@@ -1,0 +1,50 @@
+<mat-card class="card">
+  <mat-card-content class="card__content">
+    <mat-card-header >
+      <mat-card-title class="card__title">Register</mat-card-title>
+    </mat-card-header>
+
+    <form class="form" [formGroup]="formRegister">
+      
+      <div class="form__field">
+        <label class="form__label" for="username">Username</label>
+        <input class="form__input" type="email" id="username" placeholder="Vicoli09" formControlName="username">
+      </div>
+      <div class="form__field">
+        <label class="form__label" for="email">Email or Phone number</label>
+        <input class="form__input" type="email" name="email" placeholder="victor@example.com or 1234567890"  formControlName="emailOrNumber">
+      </div>
+      <div class="form__field">
+        <label class="form__label" for="password">Password</label>
+        <input class="form__input" type="email" name="password" placeholder="Enter your password" formControlName="password">
+      </div>
+      <button class="form__submit" type="submit" (click)="clickRegister()">Register</button>
+
+      <section class="register">
+        <section class="register__content">
+          <div class="separator">
+            <div class="separator__border"></div>
+          </div>
+          <div class="text">
+            <span class="text__content">or register with</span>
+          </div>
+        </section>
+        <section class="register__inanotherway">
+          <button class="botton" (click)="loginWithGoogle()">
+            <img class="img" src="assets/svg/google.svg" alt="">
+            Google
+          </button>
+          <button class="botton">
+            <img class="img" src="assets/svg/apple_dark.svg" alt="">
+            Apple
+          </button>
+        </section>
+      </section>
+    </form>
+  </mat-card-content>
+
+  
+  <div *ngIf="errorMessage">
+    {{errorMessage}}
+  </div>
+</mat-card>

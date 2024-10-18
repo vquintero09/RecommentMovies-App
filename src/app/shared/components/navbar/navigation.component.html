@@ -1,0 +1,41 @@
+<nav class="nav-container">
+  <h2 class="nav-container__title">Recomend Movies</h2>  
+
+  <ul class="nav-container__ul nav-container__ul--movil">
+    <li class="nav-container__list">
+      <button mat-icon-button  (click)="toggleIcon('home')">
+        <ion-icon [name]="selectedIcon === 'home' ? 'home' : 'home-outline'"></ion-icon>
+      </button>
+    </li>
+    <li class="nav-container__list">
+      <button  mat-icon-button (click)="toggleIcon('bookmarks')">
+        <ion-icon [name]="selectedIcon === 'bookmarks' ? 'bookmarks' : 'bookmarks-outline'" ></ion-icon>
+      </button>
+    </li>
+    <li>
+      <button mat-icon-button (click)="toggleIcon('addCircle')">
+        <ion-icon [name]="selectedIcon === 'addCircle' ? 'add-Circle' : 'add-Circle-outline' "></ion-icon>
+      </button>
+    </li>
+    <li>
+      <button mat-icon-button (click)="toggleIcon('search')">
+        <ion-icon [name]="selectedIcon === 'search'? 'search' : 'search-outline' "></ion-icon>
+      </button>
+    </li>
+  </ul>
+
+  <ul class="nav-container__ul">
+    <li>
+      <button mat-icon-button >
+        <ion-icon name="notifications-outline"></ion-icon></button>
+      
+    </li>
+    <li>
+      <button mat-icon-button>
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </button>
+    </li>
+  </ul>
+  
+</nav>
+

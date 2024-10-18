@@ -1,0 +1,162 @@
+.card{
+  height: 100vh;
+  background: linear-gradient(to bottom, black, #991b1b);
+
+  &__title {
+    color: #fff;
+    font-size: 30px;
+  }
+
+  &__content{
+    height: 500px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    border-radius: 1rem;
+    padding: 2rem;
+    backdrop-filter: blur(4px);
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .form{
+    width: 100%;
+    height: 100%;
+    margin-top: 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+
+    
+    &__field{
+      display: flex;
+      flex-direction: column;
+      margin-top: 14px;
+      color: rgb(229, 231, 235);
+    }
+
+    &__input {
+      margin-top: 10px;
+      height: 35px;
+      border-radius: 5px;
+      border: 1px solid #fff;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.2);
+      padding-left: 15px;
+
+      
+    }
+
+    &__submit {
+      margin-top: 18px;
+      width: 100%;
+      height: 35px;
+      cursor: pointer;
+      border-radius: 5px;
+      border: none;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 500;
+      background-color: rgb(220 38 38);
+
+
+      &:hover{
+        background-color: rgb(185 28 28);
+      }
+    }
+  }
+
+  .register{
+    margin-top: 1.5rem;
+
+    &__content {
+      position: relative;
+
+      .separator {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        inset: 0;
+
+        &__border {
+          border: 1px solid rgb(209 213 219);
+          width: 100%;
+        }
+      }
+
+      .text {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        font-weight: 400;
+
+        &__content{
+          background: transparent;
+          color: rgb(229 231 235);
+          padding: 0 28px;
+          margin-bottom: 6px;
+
+        }
+      }
+    }
+
+    &__inanotherway {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+
+      .botton{
+        width: 210px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(4px);
+        border-radius: 5px;
+        border: 1px solid #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #fff;
+        font-weight: 500;
+        gap: 8px;
+        cursor: pointer;
+
+        &:hover {
+          background: rgba(255, 255, 255, .5);
+        }
+      }
+
+      .img {
+        height: 20px;
+        width: 20px;
+      }
+    }
+  }
+  
+}
+
+
+@media (max-width: 834px) {
+  .card {
+    &__content {
+      width: 90vw;
+      height: 540px;
+    }
+
+    .form {
+      .register {
+        &__inanotherway {
+          flex-direction: column;
+          row-gap: 14px;
+
+          .botton {
+            width: 100%;
+            height: 30px;
+          }
+        }
+      }
+    }
+  }
+  
+}
+

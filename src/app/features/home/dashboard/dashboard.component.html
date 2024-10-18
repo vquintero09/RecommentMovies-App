@@ -1,0 +1,51 @@
+<mat-card class="movie" appearance="outlined">
+  <div class="movie__slider-images">
+    @for(movie of movies; track index; let index = $index){
+      <img class="movie__slider-image"  [src]="movie.image" alt="Fondo de pelicula" [class.active]="index === currentIndex">
+
+      <section class="movie__info">
+        <section class="movie__info-content">
+          <mat-card-header class="movie__title">
+            <mat-card-title class="movie__title-content">{{movie.title}}</mat-card-title>
+          </mat-card-header>
+          <div class="movie__dates">
+            <p>
+              <span class="movie__dates-icon"><ion-icon name="star" color="red"></ion-icon></span>{{movie.rate}}
+              <span class="movie__dates-separador">|</span> 
+              {{movie.year}} 
+              <span class="movie__dates-separador">|</span>
+              <ion-icon class="movie__dates-icon" name="time-outline" color="red"></ion-icon>{{movie.duration}}
+            </p>
+          </div>
+          <mat-card-content class="movie__content">
+            <p class="movie__content-description">{{movie.description}}</p>
+            <p>{{movie.genre}}</p>
+          </mat-card-content>
+    
+          <mat-card-actions class="movie__btn">
+            <button class="movie__btn-content">
+              <ion-icon name="add"color="black"></ion-icon> 
+              <span class="movie__btn-spam">Guardar</span>
+            </button>
+    
+            <button class="movie__btn-content">
+              <ion-icon name="film-outline"></ion-icon>
+              <span>Tráiler</span>
+            </button>
+            <button class="movie__btn-content" (click)="logout()">
+              <ion-icon name="film-outline"></ion-icon>
+              <span>Cerrar sesión</span>
+            </button>
+          </mat-card-actions> 
+        </section>
+      </section>
+    }
+  </div> 
+
+  <section class="movie__slider-controls">
+    @for(movie of movies; track index; let index = $index) {
+      <button class="movie__slider-control" [class.active]="index === currentIndex" (click)="selectSlide(index)"></button>
+    }
+  </section>
+</mat-card>
+

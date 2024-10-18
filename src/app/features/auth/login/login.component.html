@@ -1,0 +1,49 @@
+<mat-card class="card">
+  <mat-card-content class="card__content">
+    <mat-card-header>
+      <mat-card-title class="card__title">Login</mat-card-title>
+    </mat-card-header>
+
+    <form  class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form__field">
+        <label class="form__label">Username</label>
+        <input class="form__input" type="email" placeholder="victor@example.com or 1234567890" formControlName="username" [ngClass]="{'form__input--error' : submitted}">
+        <mat-error *ngIf="submitted && hasError('username', 'required')"><span class="form__error">username is required</span></mat-error>
+      </div>
+
+      <div class="form__field">
+        <label class="form__label">Password</label>
+        <input class="form__input" type="password" placeholder="Enter your password" formControlName="password" [ngClass]="{'form__input--error' : submitted}">
+        <mat-error *ngIf="submitted && hasError('password', 'required')"><span class="form__error">password is required</span></mat-error>
+      </div>
+
+      <button class="form__botton" type="submit">Login</button>
+
+      <!-- <mat-error *ngIf="errorMessage">{{errorMessage}}</mat-error> -->
+
+      <section class="register">
+        <section class="register__content">
+          <div class="separator">
+            <div class="separator__border"></div>
+          </div>
+          <div class="text">
+            <span class="text__content">or continue with</span>
+          </div>
+        </section>
+        <section class="register__inanotherway">
+          <button class="botton">
+            <img class="img" src="assets/svg/google.svg" alt="">
+            Google
+          </button>
+          <button class="botton">
+            <img class="img" src="assets/svg/apple_dark.svg" alt="">
+            Apple
+          </button>
+        </section>
+      </section>
+
+      <p class="new-account">Don't have an account? <a class="sing" [routerLink]="['../', 'register']"> Sign up here</a></p>
+    </form>
+  </mat-card-content>
+  
+</mat-card>
