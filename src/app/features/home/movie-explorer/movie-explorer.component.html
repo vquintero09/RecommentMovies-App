@@ -1,0 +1,13 @@
+<Section class="explorer">
+  <h1 class="explorer__title">Movie Explorer</h1>
+
+  <div class="scroll-container">
+    @for (genre of genres; track $index) {
+      <button class="scroll-content">{{genre}}</button>
+    }
+  </div>
+  <br>
+  <br>
+  <h2 class="explorer__title">Trending Now</h2>
+  <app-movie-card></app-movie-card>
+</Section>

@@ -1,0 +1,44 @@
+.main {
+  display: flex;
+}
+.card {
+  width: 158px;
+  height: 260px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(14px);
+  border-radius: 5px;
+  padding: 8px;
+  margin-left: 12px;
+  font-size: 12px;
+  
+  &__content{
+    position: relative;
+    padding: 0 0;
+    height: 100%;
+  }
+
+  &__img {
+    width: 140px;
+    height: 200px;
+    background-size: cover;
+    border-radius: 5px;
+  }
+
+  &__title {
+    margin-top: -4px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  &__date {
+    position: absolute;
+    bottom: 0;
+    color: #D1D8DB;
+    font-weight: 500;
+  }
+}
+
+.mat-mdc-card-content:first-child {
+  padding-top: 0
+}

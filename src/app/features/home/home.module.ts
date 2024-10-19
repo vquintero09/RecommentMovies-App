@@ -5,6 +5,7 @@ import { IonIcon } from '@ionic/angular/standalone';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '@shared/shared.module';
 import { HomeComponent } from './home.component';
+import { MovieExplorerComponent } from './movie-explorer/movie-explorer.component';
 
 export const routes: Routes = [{path: '', component: HomeComponent}]
 
@@ -13,7 +14,8 @@ export const routes: Routes = [{path: '', component: HomeComponent}]
   exports: [HomeComponent],
   declarations: [
     DashboardComponent,
-    HomeComponent
+    HomeComponent,
+    MovieExplorerComponent
   ],
   providers: [],
 })
