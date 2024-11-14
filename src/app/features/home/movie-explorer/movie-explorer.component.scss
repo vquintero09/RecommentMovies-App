@@ -1,12 +1,12 @@
 .explorer{
-  width: 90%;
+  width: 83%;
   margin: auto;
 
   &__title {
     color: #fff;
   }
 
-  .scroll-container {
+  .scroll {
     width: 100%;
     height: 72px;
     border: 1px solid white;
@@ -14,9 +14,8 @@
     display: flex;
     border-radius: 6px;
     white-space: nowrap;
-    overflow-y: auto;
 
-    .scroll-content {
+    &__button {
       background-color: transparent;
       color: #fff;
       font-size: 16px;
@@ -31,4 +30,72 @@
       }
     }
   }
+
+  .movies-card {
+    height: 315px;
+    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-auto-flow: column;
+    column-gap: 10px;
+
+    &__scrollLeft, &__scrollRight {
+      position: absolute;
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-size: 2rem;
+      color: red;
+      z-index: 10;
+
+    }
+
+    &__scrollLeft {
+      left: 100px;
+    }
+    &__scrollRight {
+      right: 100px;
+    }
+  }
+}
+
+/* Estilos para dispositivos móviles */
+@media only screen and (max-width: 767px){
+  .movies-card {
+    grid-template-columns: repeat(2, 1fr);
+    overflow: scroll;
+  }
+  .scroll-container {
+    overflow: scroll;
+  }
+}
+
+/* Estilos para tablets en modo vertical */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .movies-card {
+    grid-template-columns: repeat(5, 1fr);
+    overflow: scroll; 
+  }
+  .scroll-container {
+    overflow: scroll;
+  }
+}
+
+/* Estilos para tablets en modo horizontal */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .movies-card {
+    overflow: scroll;
+  }
+  .scroll-container {
+    overflow: scroll;
+  }
+}
+
+/* Estilos para pantallas de escritorio */
+@media only screen and (min-width: 1200px) {
+  .movies-card {
+    grid-template-columns: repeat(8, 1fr);
+    overflow: hidden;
+  }
+  
 }

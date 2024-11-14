@@ -1,16 +1,15 @@
-<app-navigation/>
-<!--Dashboard-->
-<section class="dashboard">
-  <app-dashboard></app-dashboard>
-</section>
+<header>
+  <app-navigation/>
+</header>
 
-<!--More movies-->
-<!-- <section class="movies">
-  <h2 class="movies__title">Solo para tí</h2>
-  <app-select-movie></app-select-movie>
-</section> -->
-<section class="movies">
-  <app-movie-explorer/>
+<main class="main-container">
+  <!--Dashboard-->
+  <section class="dashboard">
+    <app-dashboard></app-dashboard>
+  </section>
 
-  <app-movie-card/>
-</section>
+  <section class="movies">
+    <app-movie-explorer/>
+  </section>
+
+</main>

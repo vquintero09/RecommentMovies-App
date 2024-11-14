@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { Imovies } from "@core/interfaces/movies-api.interface";
@@ -11,6 +11,11 @@ export class MoviesApiService {
 
   getMovies(): Observable<Imovies[]> {
     return this.httpClient.get<Imovies[]>(this.URL_MOVIES);
+  }
+
+  getMoviesByGenre(genre: string): Observable<Imovies[]> {
+    const params = new HttpParams().set('genre', genre)  
+    return this.httpClient.get<Imovies[]>(this.URL_MOVIES, {params})
   }
 
   getMovieById(): Observable<Imovies> {

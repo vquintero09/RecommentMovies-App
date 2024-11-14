@@ -1,13 +1,31 @@
 <Section class="explorer">
   <h1 class="explorer__title">Movie Explorer</h1>
-
-  <div class="scroll-container">
+  <div class="scroll">
     @for (genre of genres; track $index) {
-      <button class="scroll-content">{{genre}}</button>
+      <button class="scroll__button" (click)="goToGenre(genre)">
+        {{genre}}
+      </button>
     }
   </div>
   <br>
   <br>
-  <h2 class="explorer__title">Trending Now</h2>
-  <app-movie-card></app-movie-card>
+
+  <h2 class="explorer__title" >Trending Now</h2>
+  <div class="movies-card" #scrollContent>
+    <button class="movies-card__scrollLeft" (click)="scrollLeft()"><</button>
+    @for (movie of displayedMovies; track $index) {
+      <app-movie-card [movie]="movie"></app-movie-card>
+    }
+    <button class="movies-card__scrollRight" (click)="scrollRight()">></button>
+
+  </div>
+
+  <br>
+  <br>
+  <h2 class="explorer__title">Trending topping</h2>
+  <div class="movies-card">
+    @for (movie of moviesReverse; track $index) {
+      <app-movie-card [movie]="movie"></app-movie-card>
+    }
+  </div>
 </Section>
