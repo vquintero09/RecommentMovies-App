@@ -1,0 +1,49 @@
+.movies {
+  background: linear-gradient(to bottom, black 30%, #991b1b);
+  height: 100vh;
+
+  .genre {
+    width: 83%;
+    margin: auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+
+    &__title {
+      color: white;
+      margin: auto 0;
+    }
+  }
+
+  &__btn {
+    background: none;
+    color: white;
+    font-size: 25px;
+    border: none;
+    cursor: pointer;
+  }
+
+  
+
+  &__grid {
+    width: 83%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 15px;
+
+  };
+};
+
+@media only screen and (max-width: 767px) {
+  .movies {
+    height: 100%;
+    &___grid {
+      row-gap: 7px;
+      column-gap: 5px;
+    }
+  }
+  
+}
