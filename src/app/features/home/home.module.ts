@@ -7,6 +7,8 @@ import { SharedModule } from '@shared/shared.module';
 import { HomeComponent } from './home.component';
 import { MovieExplorerComponent } from './movie-explorer/movie-explorer.component';
 import { AsyncPipe } from '@angular/common';
+import { ModalMovieComponent } from "../movie-detail/modal-movie.component";
+import { MovieDetailComponent } from "../../shared/components/movie-detail/movie-detail.component";
 
 export const routes: Routes = [
    {
@@ -18,12 +20,14 @@ export const routes: Routes = [
 
 @NgModule({
    imports: [
-      MatCardModule, 
-      IonIcon, 
-      RouterModule.forChild(routes), 
-      SharedModule, 
-      AsyncPipe, 
-   ],
+    MatCardModule,
+    IonIcon,
+    RouterModule.forChild(routes),
+    SharedModule,
+    AsyncPipe,
+    ModalMovieComponent,
+    MovieDetailComponent
+],
    exports: [HomeComponent],
    declarations: [
       DashboardComponent,

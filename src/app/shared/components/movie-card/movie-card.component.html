@@ -1,18 +1,11 @@
 <section class="main">
-   @for(movie of displayedMovies; track index; let index=$index) {
-      <mat-card class="card">
-         <mat-card-content class="card__content">
-            <img class="card__img" [src]="movie.poster"  alt="">
-            <h3 class="card__title">{{movie.title}}</h3>
-            <p class="card__date" >{{movie.year}} - Action </p>
-         </mat-card-content>
-      </mat-card>
-   }
+   <mat-card class="card">
+      <mat-card-content class="card__content">
+         <img class="card__img" [src]="movie.poster"  alt="{{movie.title}}">
+         <h3 class="card__title">{{movie.title}}</h3>
+         <p class="card__date" >{{movie.year}} - Action </p>
+      </mat-card-content>
+   </mat-card>
 </section>
 
-
-<br>
-<br>
-<br>
-<br>
 

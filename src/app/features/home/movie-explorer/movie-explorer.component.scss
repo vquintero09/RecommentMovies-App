@@ -1,7 +1,6 @@
 .explorer{
   width: 83%;
   margin: auto;
-
   &__title {
     color: #fff;
   }
@@ -14,6 +13,7 @@
     display: flex;
     border-radius: 6px;
     white-space: nowrap;
+    overflow: scroll;
 
     &__button {
       background-color: transparent;
@@ -57,7 +57,14 @@
       right: 100px;
     }
   }
+  .info-container{
+    z-index: 20;
+    margin: auto;
+    border: 1px solid yellow;
+  }
 }
+
+
 
 /* Estilos para dispositivos móviles */
 @media only screen and (max-width: 767px){

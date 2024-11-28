@@ -33,17 +33,17 @@ export class LoginComponent {
             next: () => this._router.navigateByUrl('/'),
             error: (error) => {
                this.errorMessage = error;
-               this._snackBar.open(this.errorMessage, '' ,{horizontalPosition:'center', verticalPosition: 'bottom', duration: 5*1000})
+               this._snackBar.open(this.errorMessage, '' ,{ horizontalPosition:'center', verticalPosition: 'bottom', duration: 5*1000 })
             } 
          })
          
       } 
    }
 
-    hasError(controlName: string, errorName: string): boolean {
-        const control = this.loginForm.get(controlName);
-        return control ? control.hasError(errorName) : false;
-    };
+   hasError(controlName: string, errorName: string): boolean {
+      const control = this.loginForm.get(controlName);
+      return control ? control.hasError(errorName) : false;
+   };
 
    onSubmit(): void {
       this.submitted = true;  

@@ -1,7 +1,7 @@
 .movies {
   height: 220px;
   display: flex;
-  
+  border: 1px solid yellow;
   &__content {
     margin-top: 19px;
     margin-left: 5px;
@@ -13,7 +13,7 @@
    
     &:hover {
       scale: 1.2;
-      border: 3px solid white;
+      // border: 3px solid white;
       transition-duration: 800ms;
       margin-left: 20px;
       margin-right: 15px;

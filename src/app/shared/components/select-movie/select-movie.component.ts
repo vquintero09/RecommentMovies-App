@@ -16,7 +16,7 @@ export class SelectMovieComponent implements OnInit {
   movies!: Imovies[];
   displayedMovies!: Imovies[];
   currentIndex: number = 0;
-  moviesPerPage: number = 5;
+  moviesPerPage: number = 2;
   movieSelected!: number;
   selectedMovie!: Imovies;
 
@@ -31,16 +31,17 @@ export class SelectMovieComponent implements OnInit {
   getMovies() {
     this._moviesService.getMovies().subscribe((data) => {
       this.movies = data;
-      this.displayedMovies = this.movies.slice(this.currentIndex, this.moviesPerPage)
+      this.displayedMovies = this.movies.slice(this.currentIndex)
     })
   }; 
 
   slideMoviesNext() {
     if(this.currentIndex + this.moviesPerPage < this.movies.length) {
-      this.currentIndex += this.moviesPerPage
+      this.currentIndex += 2
     } else {
       this.currentIndex = 0
     }
+    
     this.updateDisplayedMovies()
   };
 

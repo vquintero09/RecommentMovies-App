@@ -8,13 +8,15 @@ import { Observable } from 'rxjs';
 import { IonIcon } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {arrowBackOutline} from 'ionicons/icons'
+import { ModalMovieComponent } from '@features/movie-detail/modal-movie.component';
+import { SharedModule } from '@shared/shared.module';
 
 @Component({
   selector: 'app-category',
   templateUrl: './genre-movies.component.html',
   styleUrl: './genre-movies.component.scss',
   standalone: true,
-  imports: [ AsyncPipe, MovieCardComponent, IonIcon ]
+  imports: [ AsyncPipe, MovieCardComponent, IonIcon, ModalMovieComponent, SharedModule ]
 })
 export class GenreMoviesComponent implements OnInit {
   private readonly _route = inject(ActivatedRoute);

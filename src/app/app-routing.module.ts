@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from '@features/home/home.component';
 
 const routes: Routes = [
   {
@@ -10,6 +9,10 @@ const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('@features/auth/auth.module').then((m) => m.AuthModule)
+  },
+  {
+    path: 'peliculas/:genre',
+    loadComponent: () => import('@features/genreMovies/genre-movies.component').then((c) => c.GenreMoviesComponent)
   }
   
 ];

@@ -25,7 +25,13 @@
   <h2 class="explorer__title">Trending topping</h2>
   <div class="movies-card">
     @for (movie of moviesReverse; track $index) {
-      <app-movie-card [movie]="movie"></app-movie-card>
+      <button (click)="onMovieSelected(movie)">
+        <app-movie-card [movie]="movie"></app-movie-card>
+      </button>
+      
     }
   </div>
+  
 </Section>
+
+

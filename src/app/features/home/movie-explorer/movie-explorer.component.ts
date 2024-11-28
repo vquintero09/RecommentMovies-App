@@ -19,7 +19,7 @@ export class MovieExplorerComponent implements OnInit{
   displayedMovies!: Imovies[];
   currentIndex: number = 0;
   moviesReverse!: Imovies[];
-  
+  movieSelected!: Imovies;
   genres = ["Action", "comedy", "Adventure", "drama", "Sci-Fi", "Horror", "Romance", "Fantasy", "Anime", "Crime"];
 
 
@@ -53,6 +53,11 @@ export class MovieExplorerComponent implements OnInit{
     })
   }
 
+  onMovieSelected(movie: Imovies){
+    this.movieSelected = movie;
+    console.log(movie);
+    
+  }
   
   
 }
