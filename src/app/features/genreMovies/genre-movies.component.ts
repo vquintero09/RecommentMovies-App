@@ -8,7 +8,6 @@ import { Observable } from 'rxjs';
 import { IonIcon } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
 import {arrowBackOutline} from 'ionicons/icons'
-import { ModalMovieComponent } from '@features/movie-detail/modal-movie.component';
 import { SharedModule } from '@shared/shared.module';
 
 @Component({
@@ -16,7 +15,7 @@ import { SharedModule } from '@shared/shared.module';
   templateUrl: './genre-movies.component.html',
   styleUrl: './genre-movies.component.scss',
   standalone: true,
-  imports: [ AsyncPipe, MovieCardComponent, IonIcon, ModalMovieComponent, SharedModule ]
+  imports: [ AsyncPipe, MovieCardComponent, IonIcon, SharedModule ]
 })
 export class GenreMoviesComponent implements OnInit {
   private readonly _route = inject(ActivatedRoute);
@@ -25,6 +24,7 @@ export class GenreMoviesComponent implements OnInit {
 
   genre!: string | null;
   movies$!: Observable<Imovies[]>;
+  movieSelected!: Imovies;
 
   constructor(){
     addIcons({arrowBackOutline})
@@ -44,5 +44,11 @@ export class GenreMoviesComponent implements OnInit {
 
   backHome(){
     this._router.navigateByUrl("/")
+  }
+
+  onMovieSelected(movie: Imovies){
+    this.movieSelected = movie;
+    console.log(this.movieSelected);
+    
   }
 }

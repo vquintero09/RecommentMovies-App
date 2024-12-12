@@ -12,4 +12,5 @@ export interface Imovies {
   image?: string;
   genre: Genres[];
   description?:string;
+  estreno?: string;
 }

@@ -16,9 +16,12 @@
 
   &__details {
     color: white;
-    border: 1px solid red;
   }
 
+  //Header card
+  &__header {
+    margin-bottom: 8px;
+  };
   &__title {
     font-size: 30px;
     color: white;
@@ -30,8 +33,52 @@
   }
 
   //Info de la pelicula
+  &__tags {
+    display:flex;
+    color: #d1d5db;
+    margin-bottom: 16px
+  };
+
   &__tag {
     font-size: 14px;
     margin-left: 5px;
+  };
+
+  &__rating {
+    margin-left: 5px;
+    
+  };
+
+  &__rating-star {
+    color: yellow;
+    margin-right: 3px;
+    font-size: 15px;
   }
+
+  //description movie
+  &__description {
+    color:#A9A9A9;
+
+  }
+
+  &__text {
+    font-size: 14px;
+    margin-bottom: 24px;
+  }
+
+  &__subtitle {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 0;
+    color: #CCCCCC;
+  
+  }
+
+  &__info-text {
+    font-size: 14px;    
+  }
+
+  
+
+  
 }

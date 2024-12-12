@@ -1,46 +1,45 @@
 <mat-card class="movie-card">
   <section class="movie-card__image" >
-    <img class="movie-card__poster-image" src="assets/pruebajpg.jpg" alt="">
+    <img class="movie-card__poster-image" [src]="Movie.poster" alt="Movie", {{Movie.title}}>
   </section>
 
   <section class="movie-card__details">
     <mat-card-header class="movie-card__header">
-      <mat-card-title class="movie-card__title">Interstellar</mat-card-title>
+      <mat-card-title class="movie-card__title">{{Movie.title}}</mat-card-title>
     </mat-card-header>
       
     <mat-card-content class="movie-card__content">
       <div class="movie-card__tags">
-        <span class="movie-card__tag">2023</span>
+        <span class="movie-card__tag">{{Movie.year}}</span>
         <span class="movie-card__tag">•</span>
-        <span class="movie-card__tag">Action</span>
+        <span class="movie-card__tag">{{Movie.genre.join(", ")}}</span>
         <span class="movie-card__tag">•</span>
-        <div>
-          <ion-icon name="star" color="yellow"></ion-icon>
-          <span>9.4</span>
+        <div class="movie-card__rating">
+          <ion-icon class="movie-card__rating-star" name="star" ></ion-icon>
+          <span class="movie-card__rating-num">{{Movie.rate}}/10</span>
         </div>
       </div>
 
       <section class="movie-card__description">
-        <p class="movie-card__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim consequuntur eius, adipisci nesciunt amet quo nihil recusandae molestiae obcaecati assumenda.
-        </p>
+        <p class="movie-card__text">{{Movie.description}}</p>
         <div class="movie-card__info-item">
-          <h3 class="movie_card__subtitle">Director</h3>
-          <p class="movie-card__info-text">Christopher Nolar</p>
+          <h3 class="movie-card__subtitle">Director</h3>
+          <p class="movie-card__info-text">{{Movie.director}}</p>
         </div>
         <div class="movie-card__info-item">
-          <h3 class="movie_card__subtitle">Fecha de estreno</h3>
-          <p class="movie-card__info-text">26 de octubre de 2014</p>
+          <h3 class="movie-card__subtitle">Fecha de estreno</h3>
+          <p class="movie-card__info-text">{{Movie.estreno}}</p>
         </div>
         <div class="movie-card__info-item">
-          <h3 class="movie_card__subtitle">Plataformas</h3>
+          <h3 class="movie-card__subtitle">Plataformas</h3>
           <img class="movie-card__plataform-logo" src="assets/svg/netflix.svg" alt="logo de netflix">
         </div>
       </section>
     </mat-card-content>
 
-    <mat-card-actions class="movie-card__action">
+    <!-- <mat-card-actions class="movie-card__action">
       <button class="movie-card__button"></button>
       <button class="movie-card__button"></button>
-    </mat-card-actions>
+    </mat-card-actions> -->
   </section>
 </mat-card>
