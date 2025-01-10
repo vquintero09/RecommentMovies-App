@@ -1,6 +1,6 @@
 <mat-card class="movie-card">
   <section class="movie-card__image" >
-    <img class="movie-card__poster-image" [src]="Movie.poster" alt="Movie", {{Movie.title}}>
+    <img class="movie-card__poster-image" [src]="Movie.poster" alt="Movie">
   </section>
 
   <section class="movie-card__details">
@@ -37,9 +37,56 @@
       </section>
     </mat-card-content>
 
+    <mat-card-actions class="movie-card__action">
+      <button class="movie-card__button"></button>
+      <button class="movie-card__button"></button>
+    </mat-card-actions>
+  </section>
+</mat-card>  
+
+
+<!-- <mat-card class="movie-card">
+  <section class="movie-card__image" >
+    <img class="movie-card__poster-image" src="assets/pruebajpg.jpg" >
+  </section>
+
+  <section class="movie-card__details">
+    <mat-card-header class="movie-card__header">
+      <mat-card-title class="movie-card__title">Presidentes</mat-card-title>
+    </mat-card-header>
+      
+    <mat-card-content class="movie-card__content">
+      <div class="movie-card__tags">
+        <span class="movie-card__tag">1999</span>
+        <span class="movie-card__tag">•</span>
+        <span class="movie-card__tag">Action, Crime</span>
+        <span class="movie-card__tag">•</span>
+        <div class="movie-card__rating">
+          <ion-icon class="movie-card__rating-star" name="star" ></ion-icon>
+          <span class="movie-card__rating-num">9.8/10</span>
+        </div>
+      </div>
+
+      <section class="movie-card__description">
+        <p class="movie-card__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non, nisi!</p>
+        <div class="movie-card__info-item">
+          <h3 class="movie-card__subtitle">Director</h3>
+          <p class="movie-card__info-text">Lorem</p>
+        </div>
+        <div class="movie-card__info-item">
+          <h3 class="movie-card__subtitle">Fecha de estreno</h3>
+          <p class="movie-card__info-text">1999</p>
+        </div>
+        <div class="movie-card__info-item">
+          <h3 class="movie-card__subtitle">Plataformas</h3>
+          <img class="movie-card__plataform-logo" src="assets/svg/netflix.svg" alt="logo de netflix">
+        </div>
+      </section>
+    </mat-card-content>
+
     <!-- <mat-card-actions class="movie-card__action">
       <button class="movie-card__button"></button>
       <button class="movie-card__button"></button>
     </mat-card-actions> -->
-  </section>
-</mat-card>
+  <!-- </section> -->
+<!-- </mat-card> --> -->

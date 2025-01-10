@@ -13,6 +13,10 @@ const routes: Routes = [
   {
     path: 'peliculas/:genre',
     loadComponent: () => import('@features/genreMovies/genre-movies.component').then((c) => c.GenreMoviesComponent)
+  },
+  {
+    path: 'add-new-movie',
+    loadComponent: () => import('@features/add-new-movie/add-new-movie.component').then((c) => c.AddNewMovieComponent)
   }
   
 ];

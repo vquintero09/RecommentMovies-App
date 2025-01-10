@@ -15,11 +15,12 @@ import {
   addCircle,
   search,
 } from "ionicons/icons";
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: "app-navigation",
   standalone: true,
-  imports: [ IonIcon, MatIconButton],
+  imports: [ IonIcon, MatIconButton, RouterLink],
   templateUrl: "./navigation.component.html",
   styleUrl:"./navigation.component.scss",
 })

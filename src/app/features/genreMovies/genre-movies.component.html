@@ -12,13 +12,12 @@
       
     }
   </div>
-
-  @if(movieSelected){
-    <section class="info">
-      <app-movie-detail [Movie]="movieSelected"/>
-    </section>
-  }
   
 </div>
 
+@if (movieSelected) {
+  <section class="info">
+    <app-movie-detail [Movie]="movieSelected"></app-movie-detail>
+  </section>
+}
 

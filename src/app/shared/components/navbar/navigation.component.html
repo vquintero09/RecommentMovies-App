@@ -13,7 +13,7 @@
       </button>
     </li>
     <li>
-      <button mat-icon-button (click)="toggleIcon('addCircle')">
+      <button mat-icon-button (click)="toggleIcon('addCircle')" [routerLink]="['add-new-movie']">
         <ion-icon [name]="selectedIcon === 'addCircle' ? 'add-Circle' : 'add-Circle-outline' "></ion-icon>
       </button>
     </li>

@@ -1,0 +1,98 @@
+<mat-card class="card">
+  <mat-card-header class="card__header">
+    <h1 class="card__title">Add New Movie</h1>
+  </mat-card-header>
+  <mat-card-content class="card__content">
+    <form class="card__form" [formGroup]="newMovieForm" (ngSubmit)="onSubmit()">
+      <div class="card__container">
+        <label class="card__label" for="title">Titulo</label>
+        <input class="card__input" id="title" type="text" name="title" placeholder="Ingresa el titulo de la pelicula" formControlName="title" [ngClass]="{'card__input--error' : submitted}">
+        @if (submitted && hasError('title', 'required')) {
+          <mat-error><span class="form-error">El titulo es requerido</span></mat-error>
+        }
+      </div>
+      <section class="card__section">
+        <div class="card__container">
+          <label class="card__label" for="year">Año de estreno</label>
+          <input class="card__input" type="date" name="year" id="year" placeholder="Choose a date" formControlName="release" [ngClass]="{'card__input--error' : submitted}">
+          @if (submitted && hasError('release', 'required')) {
+            <mat-error><span class="form-error">El año de estreno es requerido</span></mat-error>
+          }
+        </div>
+        <div class="card__container">
+          <label class="card__label" for="duration">Duración(minutos)</label>
+          <input class="card__input" type="number" name="duration" id="duration" placeholder="Ingresa la duración" formControlName="duration" [ngClass]="{'card__input--error' : submitted}">
+          @if (submitted && hasError('duration', 'required')) {
+            <mat-error><span class="form-error">La duración es requerida</span></mat-error>
+          }
+        </div>
+      </section>
+      <div class="card__container">
+        <label class="card__label" for="genres">Genero</label>
+        <mat-select multiple class="select card__input" placeholder="Generos" formControlName="genre" >
+          <!--Esto para disposivos moviles-->
+          <!-- <mat-select-trigger>
+            {{genre.value?.[0] || ''}}
+            @if ((genre.value?.length || 0) > 1) {
+              <span class="example-additional-selection">
+                (+{{(genre.value?.length || 0) - 1}} {{genre.value?.length === 2 ? 'other' : 'others'}})
+              </span>
+            }
+          </mat-select-trigger> -->
+          @for (genre of genreList; track $index) {
+            <mat-option [value]="genre" class="option">{{genre}}</mat-option>
+          }
+        </mat-select>
+      </div>
+      <div class="card__container">
+        <label class="card__label" for="director">Director</label>
+        <input class="card__input" type="text" name="names" id="director" placeholder="Ingresa nombre del director" formControlName="director" [ngClass]="{'card__input--error' : submitted}">
+        @if (submitted && hasError('director', 'required')) {
+          <mat-error><span class="form-error">El nombre del director es requerido</span></mat-error>
+        }
+      </div>
+      <div class="card__container">
+        <label class="card__label" for="description">Descripcion</label>
+        <textarea class="card__input input-text-area" type="text" name="description" id="description" placeholder="Ingresa la description de la pelicula" formControlName="description" [ngClass]="{'card__input--error' : submitted}"></textarea>
+        @if (submitted && hasError('description', 'required')) {
+          <mat-error><span class="form-error">La descripción es requerida</span></mat-error>
+        }
+      </div>
+      <div class="card__container">
+        <label class="card__label" for="rate">Calificación</label>
+        <div class="card__range">
+          <input class="card__input-range" type="range" name="rate" id="rate" step="0.1" min="0.0" max="10" [(ngModel)]="rating" formControlName="rate" [ngClass]="{'card__input--error' : submitted}"> 
+          <span class="card__span">{{rating}}</span>
+        </div>
+        @if (submitted && hasError('rate', 'required')) {
+          <mat-error><span class="form-error">La Calificación es requerida</span></mat-error>
+        }
+      </div>
+      <div class="card__container">
+        <label class="card__label" for="poster">poster</label>
+        <input class="card__input" type="text" name="poster" id="poster" placeholder="Ingresa la url del poster de la pelicula" formControlName="poster" [ngClass]="{'card__input--error' : submitted}">
+        @if (submitted && hasError('poster', 'required')) {
+          <mat-error><span class="form-error">El poster es requerido</span></mat-error>
+        }
+      </div>
+      <div class="card__container">
+        <label class="card__label" for="plataforms">Plataformas</label>
+        <mat-select multiple class="select card__input" placeholder="En que plataforma se encuentra" formControlName="plataforms" >
+          @for (plataform of plataformsList; track $index) {
+            <mat-option [value]="plataform" class="option">{{plataform}}</mat-option>
+          }
+        </mat-select>
+      </div>
+      <button class="card__button">Agregar pelicula</button>
+
+      <div class="card__container">
+        <label class="card__label">Select Year</label>
+        <input class="card__input" [matDatepicker]="yearPicker" [value]="selectedYear | date:'yyyy'">
+        <mat-datepicker-toggle matSuffix [for]="yearPicker"></mat-datepicker-toggle>
+        <mat-datepicker #yearPicker startView="multi-year" (yearSelected)="chosenYearHandler($event, yearPicker)" panelClass="year-only-picker"></mat-datepicker>
+      </div>
+    </form>
+  </mat-card-content>
+  
+</mat-card>
+
