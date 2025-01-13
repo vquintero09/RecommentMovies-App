@@ -10,7 +10,8 @@
     color: white;
     font-weight: bold;
   }
-  //Form container
+
+  //Form
   &__content{
     width: 50%;
     max-width: 700px;
@@ -59,32 +60,24 @@
     }
   }
 
-  //MatErrorInput
-  .form-error{
-    color: red;
-    font-size: .9rem;
-    font-weight: 500;
-    letter-spacing: 2px;
-  }
-
   //input range
-  &__range{
+  .range{
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+
+    &__input {
+      width: 85%;
+      height: 40px;
+    }
+
+    &__span {
+      font-size: 20px;
+      font-weight: bold;
+    }
   }
 
-  &__input-range {
-    width: 85%;
-    height: 40px;
-  }
-
-  &__span{
-    font-size: 20px;
-    font-weight: bold;
-  }
-
-  //input textarea
+  //textarea
   .input-text-area {
     resize: vertical;
   }
@@ -98,7 +91,7 @@
 
   }
 
-  //button
+  // submit button
   &__button{
     width: 100%;
     background-color: #dc2626;
@@ -114,27 +107,36 @@
 }
 
 //styles angular material
-.select{
+.mat-select{
   width: 100%;
   border-color: rgba(255,255,255,.2);
   --mat-select-trigger-text-size: 14px;
   --mat-select-placeholder-text-color: #9ca3af;
 }
-.option{
+.mat-option{
   font-family: 'Times New Roman', Times, serif;
 }
-.bar {
-  --mat-toolbar-container-background-color: red
-}
-.year-only-picker .mat-calendar-body {
+
+.mat-datepicker {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  max-height: 300px; /* Ajusta la altura si es necesario */
+  &__input {
+    width: 90%;
+  }
+  &__icon {
+    color: white;
+  }
 }
 
-.year-only-picker .mat-calendar-period-button,
-.year-only-picker .mat-calendar-previous-button,
-.year-only-picker .mat-calendar-next-button {
-  display: none; /* Oculta botones innecesarios */
+.mat-form__error{
+  color: red;
+  font-size: .8rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+
+//Responsive mobile
+@media(max-width: 836px){
+  .card__section {
+    grid-template-rows: repeat(2, 1fr);
+  }
 }
