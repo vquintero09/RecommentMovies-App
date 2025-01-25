@@ -1,73 +1,108 @@
-import { Component, inject } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { Component, inject, OnInit } from '@angular/core';
+import { NgClass} from '@angular/common';
 import { FormsModule, ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
-import { DatePipe, NgClass} from '@angular/common';
-import { MatInput } from '@angular/material/input';
+import { MoviesApiService } from '@core/services/movies-api.service';
+
+import { MatCardModule } from '@angular/material/card';
+import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { provideNativeDateAdapter } from '@angular/material/core';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
   selector: 'app-add-new-movie',
   standalone: true,
-  imports: [MatCardModule, MatFormFieldModule, MatSelectModule, MatToolbarModule, FormsModule, ReactiveFormsModule, NgClass, DatePipe, MatDatepickerModule],
+  imports: [MatCardModule,  MatSelectModule, FormsModule, ReactiveFormsModule, NgClass,MatDatepickerModule, MatNativeDateModule],
   templateUrl: './add-new-movie.component.html',
   styleUrl: './add-new-movie.component.scss',
+	providers: [provideNativeDateAdapter()]
   
 })
-export class AddNewMovieComponent {
-	isDropdownHidden = true;
+export class AddNewMovieComponent implements OnInit {
+	private readonly _FormBuilder = inject(FormBuilder);
+	private readonly _MoviesService = inject(MoviesApiService);
+	private readonly _SnackBar = inject(MatSnackBar);
+	
 	submitted: boolean = false;
-	rating: number = 0.0;
-	selectedYear: Date | null = null;
-	movieForm: any;
-	// selectedGenres: string[] = [];
-	genreList: string[] = ["Acción", "Comedia", "Aventura", "Drama", "Ciencia Ficción", "Terror", "Romance", "Fantasía","Suspenso", "Anime", "Crimen", "infantil"];
+	showYearPicker = false;
+	selectedYear: number | null = null;
+	years: number[] = []; 
+	rating: number = 5;
+	hasErrors: {[key: string]: {[errorName: string]: boolean}} = {};
+	errorMessage:string = '';
+	genreList: string[] = ["Accion", "Comedia", "Aventura", "Drama", "Ciencia Ficcion", "Terror", "Romance", "Fantasia", "Suspenso", "Anime", "Crimen", "infantil", "Biografia"];
 	plataformsList: string[] = ["Netflix", "Max", "Amazon Prime Video", "Disney+", "Paramount+", "Apple TV+", "Crunchyroll"];
-
-	private readonly _formBuilder = inject(FormBuilder);
-
-
-	newMovieForm = this._formBuilder.nonNullable.group({
+	
+	ngOnInit(): void {
+		this.generateYears();		
+	}
+	
+	newMovieForm = this._FormBuilder.nonNullable.group({
 		title: ['', Validators.required],
-		release: [0, Validators.required],
-		duration: [0, [Validators.required, Validators.min(30)]],
-		genre: [[''], Validators.required],
-		director: ['', Validators.required],
+		year: [null as number | null, Validators.required],
+		duration: [null as number | null, [Validators.required, Validators.min(30)]],
+		genre: [[], Validators.required],
+		director: ['', [Validators.required]],
 		description: ['', Validators.required],
 		rate: [0, Validators.required],
 		poster: ['', Validators.required],
-		plataforms: [[''], Validators.required]
-		// comments: ['']
-	})
-  
-	toggleDropdown() {
-		this.isDropdownHidden = !this.isDropdownHidden;
-	};
+		plataforms: [[], Validators.required]
+	});
 
 	createMovie(){
-		console.log(this.newMovieForm.value);
-		console.log(this.newMovieForm.valid);
-		
+		if(this.newMovieForm.valid){
+			const movie = {
+				...this.newMovieForm.getRawValue()
+			};
+
+			this._MoviesService.createMovie(movie).subscribe({
+				next: (value) => console.log(value),
+				error: (error) => {
+					this.errorMessage = error;
+					this._SnackBar.open(this.errorMessage, '', {horizontalPosition: 'center', verticalPosition: 'bottom', duration: 5*1000})
+				} 
+			})
+		}
 	}
 
-  hasError(controlName: string, errorName: string): boolean {
-		const control = this.newMovieForm.get(controlName);
-		return control ? control.hasError(errorName) : false;
+	updateHassErrorState(){
+		for(const controlName in this.newMovieForm.controls) {
+			const control = this.newMovieForm.get(controlName);			
+			if(control) {
+				this.hasErrors[controlName] = {};
+				const errors = control.errors;
+				if(errors){
+					Object.keys(errors).forEach((errorName) => {
+						this.hasErrors[controlName][errorName] = true
+					})
+				}
+			}
+		}
 	};
 
+	generateYears(){
+		const currentYear = new Date().getFullYear();
+		for(let i = currentYear; i >= currentYear - 40; i--) {
+			this.years.push(i)
+		}		
+	};
+
+	toggleYearPicker(){
+		this.showYearPicker = !this.showYearPicker;
+	};
+
+	selectYear(year: number){
+		this.selectedYear = year;
+		this.newMovieForm.get('year')?.setValue(year);
+		this.showYearPicker = false;
+	};
+	
 	onSubmit(){
 		this.submitted = true;
 		this.createMovie();
+		this.updateHassErrorState();
+		this.generateYears();
 	}
-
-	chosenYearHandler(normalizedYear: Date, datepicker: any) {
-		this.selectedYear = normalizedYear;
-		console.log('Selected Year:', normalizedYear.getFullYear());
-		datepicker.close(); // Cierra el datepicker después de seleccionar el 
-	}
-		
-  
 }

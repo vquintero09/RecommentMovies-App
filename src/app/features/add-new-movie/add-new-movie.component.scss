@@ -1,21 +1,22 @@
 .card{
   background: linear-gradient(to bottom, black 30%, #991b1b);
   color: #ccc;
-  
   &__header {
     width: 50%;
-    margin: 0 auto;
+    margin: auto;
+   
   }
   &__title {
     color: white;
     font-weight: bold;
+    margin: auto;
   }
 
   //Form
   &__content{
     width: 50%;
     max-width: 700px;
-    margin: 0 auto;
+    margin:auto;
     background: rgba(0,0,0,.3);
     backdrop-filter: blur(8px);
     box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px -2px rgba(0, 0, 0, 0.05);
@@ -106,15 +107,47 @@
   }
 }
 
+//Datepicker
+.datepicker {
+  position: relative;
+
+  &__input {
+    width: 100%;
+    cursor: pointer;
+  }
+};
+
+.year-picker {
+  position: absolute;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  background: white;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.year-option {
+  padding: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+  color: black;
+
+  &:hover {
+    background: #f0f0f0;
+  }
+}
+
 //styles angular material
 .mat-select{
   width: 100%;
-  border-color: rgba(255,255,255,.2);
+  border-color: rgb(240, 0, 0);
   --mat-select-trigger-text-size: 14px;
   --mat-select-placeholder-text-color: #9ca3af;
 }
 .mat-option{
-  font-family: 'Times New Roman', Times, serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .mat-datepicker {
@@ -136,6 +169,9 @@
 
 //Responsive mobile
 @media(max-width: 836px){
+  .card__content {
+    width: 100%;
+  }
   .card__section {
     grid-template-rows: repeat(2, 1fr);
   }

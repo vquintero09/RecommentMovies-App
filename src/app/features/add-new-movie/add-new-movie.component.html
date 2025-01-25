@@ -15,32 +15,35 @@
         name="title" 
         placeholder="Ingresa el titulo de la pelicula" 
         formControlName="title" 
-        [ngClass]="{'card__input--error' : submitted}">
-        @if (submitted && hasError('title', 'required')) {
+        [ngClass]="{'card__input--error' : submitted && hasErrors['title']['required']}"
+        >
+        @if (submitted && hasErrors['title']['required']) {
           <mat-error><span class="mat-form__error">El titulo es requerido</span></mat-error>
         }
       </div>
-      <section class="card__section">
+      <section class="card__section" >
         <!--ESTRENO CONTENT-->
-        <div class="card__container">
+        <div class="card__container" >
           <label class="card__label">Año de estreno</label>
-          <div class="mat-datepicker">
+          <div class="datepicker">
             <input 
-            class="card__input mat-datepicker__input" 
-            [matDatepicker]="yearPicker" 
-            [value]="selectedYear | date:'yyyy'" 
-            placeholder="{{selectedYear ? selectedYear.getFullYear() : 'Selecciona el año'}}" 
+            class="card__input datepicker__input" 
+            placeholder="Selecciona el año" 
             readonly 
-            formControlName="release"
-            [ngClass]="{'card__input--error' : submitted}">
-            <mat-datepicker-toggle class="mat-datepicker__icon" matSuffix [for]="yearPicker"></mat-datepicker-toggle>
-            <mat-datepicker 
-            #yearPicker 
-            startView="multi-year" 
-            (yearSelected)="chosenYearHandler($event, yearPicker)" 
-            panelClass="year-only-picker">
-            </mat-datepicker>
-            @if (submitted && hasError('release', 'required')) {
+            formControlName="year"
+            [ngClass]="{'card__input--error' : submitted && hasErrors['year']['required']}"
+            (click)="toggleYearPicker()"
+            >
+            <div class="year-picker">
+              @if (showYearPicker) {
+                @for (year of years; track $index) {
+                  <div class="year-option" (click)="selectYear(year)">
+                    {{year}}
+                  </div>
+                }
+              }
+            </div>
+            @if (submitted && hasErrors['year']['required']) {
               <mat-error><span class="mat-form__error">El año de estreno es requerido</span></mat-error>
             }
           </div>
@@ -48,43 +51,73 @@
         <!--DURATION-->
         <div class="card__container">
           <label class="card__label" for="duration">Duración(minutos)</label>
-          <input class="card__input" type="number" name="duration" id="duration" placeholder="Ingresa la duración" formControlName="duration" [ngClass]="{'card__input--error' : submitted}">
-          @if (submitted && hasError('duration', 'required')) {
+          <input 
+          class="card__input" 
+          type="number" 
+          name="duration" 
+          id="duration" 
+          placeholder="Ingresa la duración" 
+          formControlName="duration" 
+          [ngClass]="{'card__input--error' : submitted && hasErrors['duration']['required'] || submitted && hasErrors['duration']['min']}"
+          >
+          @if (submitted && hasErrors['duration']['required']) {
             <mat-error><span class="mat-form__error">La duración es requerida</span></mat-error>
+          }
+          @if (submitted && hasErrors['duration']['min']) {
+            <mat-error><span class="mat-form__error">Debe durar almenos 30 min</span></mat-error>
           }
         </div>
       </section>
       <!--GENRE CONTENT-->
       <div class="card__container">
         <label class="card__label" for="genres">Genero</label>
-        <mat-select multiple class="card__input mat-select" placeholder="Generos" formControlName="genre" >
-          <!--Esto para disposivos moviles-->
-          <!-- <mat-select-trigger>
-            {{genre.value?.[0] || ''}}
-            @if ((genre.value?.length || 0) > 1) {
-              <span class="example-additional-selection">
-                (+{{(genre.value?.length || 0) - 1}} {{genre.value?.length === 2 ? 'other' : 'others'}})
-              </span>
-            }
-          </mat-select-trigger> -->
+        <mat-select 
+        class="card__input mat-select"
+        multiple
+        placeholder="Generos" 
+        formControlName="genre" 
+        [ngClass]="{'card__input--error' : submitted && hasErrors['genre']['required']}"
+        > 
           @for (genre of genreList; track $index) {
             <mat-option [value]="genre" class="mat-option">{{genre}}</mat-option>
           }
         </mat-select>
+        @if (submitted && hasErrors['genre']['required']) {
+          <mat-error><span class="mat-form__error">El genero es requerido</span></mat-error>
+        }
       </div>
       <!--DIRECTOR NAMES CONTENT-->
       <div class="card__container">
         <label class="card__label" for="director">Director</label>
-        <input class="card__input" type="text" name="names" id="director" placeholder="Ingresa nombre del director" formControlName="director" [ngClass]="{'card__input--error' : submitted}">
-        @if (submitted && hasError('director', 'required')) {
+        <input 
+        class="card__input" 
+        type="text" 
+        name="names" 
+        id="director" 
+        placeholder="Ingresa nombre del director" 
+        formControlName="director" 
+        [ngClass]="{'card__input--error' : submitted && hasErrors['director']['required'] || submitted && hasErrors['director']['minlength']}"
+        >
+        @if (submitted && hasErrors['director']['required']) {
           <mat-error><span class="mat-form__error">El nombre del director es requerido</span></mat-error>
+        }
+        @if (submitted && hasErrors['director']['minlength']) {
+          <mat-error><span class="mat-form__error">Debe de ser un nombre real</span></mat-error>
         }
       </div>
       <!--DESCRIPTION CONTENT-->
       <div class="card__container">
         <label class="card__label" for="description">Descripcion</label>
-        <textarea class="card__input input-text-area" type="text" name="description" id="description" placeholder="Ingresa la description de la pelicula" formControlName="description" [ngClass]="{'card__input--error' : submitted}"></textarea>
-        @if (submitted && hasError('description', 'required')) {
+        <textarea 
+        class="card__input input-text-area" 
+        type="text" 
+        name="description" 
+        id="description" 
+        placeholder="Ingresa la description de la pelicula" 
+        formControlName="description" 
+        [ngClass]="{'card__input--error' : submitted && hasErrors['description']['required']}">
+        </textarea>
+        @if (submitted && hasErrors['description']['required']) {
           <mat-error><span class="mat-form__error">La descripción es requerida</span></mat-error>
         }
       </div>
@@ -92,33 +125,62 @@
       <div class="card__container">
         <label class="card__label" for="rate">Calificación</label>
         <div class="range">
-          <input class="range__input" type="range" name="rate" id="rate" step="0.1" min="0.0" max="10" [(ngModel)]="rating" formControlName="rate" [ngClass]="{'card__input--error' : submitted}"> 
+          <input 
+          class="range__input" 
+          type="range" 
+          name="rate" 
+          id="rate" 
+          step="0.1" 
+          min="5.0" 
+          max="10" 
+          formControlName="rate" 
+          [(ngModel)]="rating" 
+          [ngClass]="{'card__input--error' : submitted && hasErrors['rate']['required']}"
+          > 
           <span class="range__span">{{rating}}</span>
         </div>
-        @if (submitted && hasError('rate', 'required')) {
+        @if (submitted && hasErrors['rate']['required']) {
           <mat-error><span class="mat-form__error">La Calificación es requerida</span></mat-error>
         }
       </div>
       <!--POSTER CONTENT-->
       <div class="card__container">
         <label class="card__label" for="poster">poster</label>
-        <input class="card__input" type="text" name="poster" id="poster" placeholder="Ingresa la url del poster de la pelicula" formControlName="poster" [ngClass]="{'card__input--error' : submitted}">
-        @if (submitted && hasError('poster', 'required')) {
+        <input 
+        class="card__input" 
+        type="text" 
+        name="poster" 
+        id="poster" 
+        placeholder="Ingresa una url del poster de la pelicula" 
+        formControlName="poster" 
+        [ngClass]="{'card__input--error' : submitted && hasErrors['poster']['required']}"
+        >
+        @if (submitted && hasErrors['poster']['required']) {
           <mat-error><span class="mat-form__error">El poster es requerido</span></mat-error>
         }
       </div>
       <!--PLATAFORMS CONTENT-->
       <div class="card__container">
         <label class="card__label" for="plataforms">Plataformas</label>
-        <mat-select multiple class="card__input mat-select" placeholder="En que plataforma se encuentra" formControlName="plataforms" >
+        <mat-select 
+        class="card__input mat-select"
+        multiple 
+        placeholder="En que plataforma se encuentra" 
+        formControlName="plataforms" 
+        [ngClass]="{'card__input--error' : submitted && hasErrors['plataforms']['required']}"
+        >
           @for (plataform of plataformsList; track $index) {
             <mat-option [value]="plataform" class="mat-option">{{plataform}}</mat-option>
           }
         </mat-select>
+        @if (submitted && hasErrors['plataforms']['required']) {
+          <mat-error><span class="mat-form__error">La plataforma donde la viste es requerida</span></mat-error>
+        }
       </div>
       <!--SUBMIT BUTTON CONTENT-->
       <button class="card__button">Agregar pelicula</button>
     </form>
   </mat-card-content>
 </mat-card>
+
 
