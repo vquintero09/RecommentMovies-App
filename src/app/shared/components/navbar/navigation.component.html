@@ -1,4 +1,4 @@
-<nav class="nav-container">
+<nav class="nav-container" >
   <h2 class="nav-container__title">Recomend Movies</h2>  
 
   <ul class="nav-container__ul nav-container__ul--movil">
@@ -23,7 +23,6 @@
       </button>
     </li>
   </ul>
-
   <ul class="nav-container__ul">
     <li>
       <button mat-icon-button >
@@ -31,11 +30,11 @@
       
     </li>
     <li>
-      <button mat-icon-button>
+      <button mat-icon-button (click)="referenceDrawer.toggle()">
         <ion-icon name="person-circle-outline"></ion-icon>
       </button>
     </li>
+
   </ul>
   
 </nav>
-

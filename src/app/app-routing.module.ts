@@ -17,6 +17,10 @@ const routes: Routes = [
   {
     path: 'add-new-movie',
     loadComponent: () => import('@features/add-new-movie/add-new-movie.component').then((c) => c.AddNewMovieComponent)
+  },
+  {
+    path: 'user',
+    loadChildren: () => import('@features/user/user.module').then((m) => m.UserModule)
   }
   
 ];

@@ -1,15 +1,22 @@
-<header>
-  <app-navigation/>
-</header>
+<mat-drawer-container class="drawer-container">
+  <mat-drawer-content>
+    <header>
+      <app-navigation [referenceDrawer]="drawer"/>
+    </header>
+    <main class="main-container">
+      <!--Dashboard-->
+      <section class="dashboard">
+        <app-dashboard></app-dashboard>
+      </section>
+    
+      <section class="movies">
+        <app-movie-explorer/>
+      </section>
+    </main>
+  </mat-drawer-content>
 
-<main class="main-container">
-  <!--Dashboard-->
-  <section class="dashboard">
-    <app-dashboard></app-dashboard>
-  </section>
-
-  <section class="movies">
-    <app-movie-explorer/>
-  </section>
-
-</main>
+  <mat-drawer class="drawer-container__content" #drawer mode="over" position="end" opened="true">
+    <app-user/>
+  </mat-drawer>
+    
+</mat-drawer-container>

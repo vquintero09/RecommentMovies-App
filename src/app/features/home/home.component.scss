@@ -10,4 +10,11 @@
     position: absolute;
     top: 0;
   }
+};
+
+.drawer-container {
+  &__content {
+    background: linear-gradient(to bottom, black 20%, #991b1b);
+    width: 280px;
+  }
 }
