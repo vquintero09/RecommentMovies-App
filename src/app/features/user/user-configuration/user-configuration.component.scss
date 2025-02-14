@@ -1,0 +1,95 @@
+
+
+.user {
+  background-color: black;
+  height: 100vh;
+  padding: 20px 16px;
+  border: 1px solid red;
+
+  &__content {
+    max-width: 42rem;
+    margin: 0 auto;
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 24px;
+    color: white;
+  }
+
+  &__section {
+    margin-bottom: 24px;
+  }
+
+  &__section-title {
+    font-size: 18px;
+    font-weight: 600;
+    color:#DDDBD8;
+    margin: 8px;
+  }
+
+  &__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #252525;
+    height: 49px;
+    border-radius: 4px;
+    margin-top: .4px;
+    border: none;
+    padding: auto;
+   
+  }
+
+  &__toggle-content {
+    display: flex;
+    align-items: center;
+    column-gap: 8px;
+    height: 100%;
+    margin-left: 22px;
+  }
+
+  &__toggle-title {
+    font-size: 13px;
+    font-weight: 500;
+    color: white;
+  }
+
+  &__toggle-slide {
+    margin-right: 10px;
+  }
+}
+
+.expansion {
+  --mat-expansion-container-background-color: #252525;
+
+  &__title {
+    font-size: 14px;
+    font-weight: 500;
+    color: white;
+    column-gap: 8px;
+  }
+
+  
+  &__radio-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 12px 0;
+    --mat-radio-label-text-color: white
+  }
+
+  &__radio-button {
+    color: white;
+  }
+}
+
+ion-icon{
+  font-size: 20px;
+  color: white;
+}
+
+.mdc-form-field>label {
+  color: red;
+}

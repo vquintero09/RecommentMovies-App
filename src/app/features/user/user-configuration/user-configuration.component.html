@@ -1,0 +1,61 @@
+<main class="user">
+  <div class="user__content">
+    <h2 class="user__title">Configuración</h2>
+    
+    <section class="user__section">
+      <h3 class="user__section-title">Cuenta</h3>
+      <mat-accordion>
+        <mat-expansion-panel class="expansion">
+          <mat-expansion-panel-header class="expansion__header">
+            <mat-panel-title class="expansion__title">
+              <ion-icon name="person-outline"></ion-icon>
+              Datos personales
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </section>
+
+    <section class="user__section">
+      <h3 class="user__section-title">Contenido y Visualización</h3>
+      <mat-accordion>
+        <mat-expansion-panel class="expansion">
+          <mat-expansion-panel-header>
+            <mat-panel-title class="expansion__title">
+              <ion-icon name="earth-outline"></ion-icon>
+              Idioma
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <Label id="hol">Selecciona el idioma</Label>
+          <mat-radio-group class="expansion__radio-group" >
+            @for ( language of languages; track $index) {
+              <mat-radio-button class="expansion__radio-button">{{language}}</mat-radio-button>
+            }
+          </mat-radio-group>
+        </mat-expansion-panel>
+      </mat-accordion>
+
+      <div class="user__toggle">
+        <div class="user__toggle-content">
+          <ion-icon name="moon-outline"></ion-icon>
+          <span class="user__toggle-title">Modo oscuro</span>
+        </div>
+        <mat-slide-toggle class="user__toggle-slide"></mat-slide-toggle>
+      </div>
+    </section>
+
+    <section class="user__section">
+      <h3 class="user__section-title">Acciones</h3>
+      <mat-accordion>
+        <mat-expansion-panel class="expansion">
+          <mat-expansion-panel-header>
+            <mat-panel-title class="expansion__title">
+              <ion-icon name="trash-outline"></ion-icon>
+              Borrar cuenta
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </section>
+  </div>
+</main>

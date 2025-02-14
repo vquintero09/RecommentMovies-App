@@ -1,0 +1,35 @@
+<section class="user">
+  <header class="user__header">
+    <div class="user__img">
+      <img class="user__img--image" src="assets/porfile.jpg" alt="">
+    </div>
+    <div class="user__info">
+      <p class="user__name">Usuario Demo</p>
+      <p class="user__mail">{{mail}}</p>
+    </div>
+  </header>
+  
+  <div class="user__separador"></div>
+  
+  <section class="user__buttons">
+    <button class="user__button" [routerLink]="['/my-porfile']">
+      <ion-icon name="person-outline"></ion-icon>
+      Mi Perfil
+    </button>
+    <button class="user__button">
+      <ion-icon name="notifications-outline"></ion-icon>
+      Notificaciones
+    </button>
+    <button class="user__button" [routerLink]="['settings/porfile']">
+      <ion-icon name="settings-outline"></ion-icon>      
+      Configuración
+    </button>
+  </section>
+  
+  <div class="user__separador"></div>
+  
+  <button class="user__button user__button--logout">
+    <ion-icon name="log-out-outline"></ion-icon>
+    Cerrar Sesión
+  </button>
+</section>
