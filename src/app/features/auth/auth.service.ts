@@ -1,15 +1,14 @@
 import { inject, Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { IReponseSingIn, IResponseRefreshToken, IUser } from '@core/interfaces/user-api.interface';
-import { catchError, Observable, tap, throwError } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { Router } from '@angular/router';
-import {URL_AUTH_LOGIN, URL_AUTH_REFRESH} from '@core/services/urls-api'
+import {URL_AUTH_LOGIN, URL_AUTH_REFRESH, URL_CREATE} from '@core/services/urls-api'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-   private readonly _CREATE_URL = 'http://localhost:3000/movies/register';
    private readonly _HTTP = inject(HttpClient);
    private readonly _router = inject(Router);
    private googleAuthUrl = 'https://accounts.google.com/o/oauth2/v2/auth';
@@ -49,17 +48,7 @@ export class AuthService {
    }
 
    create(user: IUser): Observable<string> {
-      return this._HTTP.post<any>(this._CREATE_URL, user).pipe(
-         catchError(this.handleErrorRegister)
-      )
+      return this._HTTP.post<any>(URL_CREATE, user)
    }
-  
-  private handleErrorRegister(error: HttpErrorResponse){
-    let  errorMessage = 'Ocurrio un error';
-    if(error.status === 400) {
-      errorMessage = 'username already exists';
-    }
-    return throwError(() => new Error(errorMessage))
-  }
   constructor() { }
 }

@@ -8,17 +8,22 @@ import { Router } from '@angular/router';
 export class ErrorApiInterceptor implements HttpInterceptor {
    private readonly _authService = inject(AuthService);
    private readonly _router = inject(Router);
+
    intercept(req: HttpRequest<any>, next: HttpHandler): any{
       console.log('*******ErrorApiInterceptor*********');
       
       return next.handle(req).pipe(catchError((error: HttpErrorResponse) => {
          let  errorMessage = '';
+         console.error(error);
+         
+
          if(error.status === HttpStatusCode.BadRequest){
             errorMessage = `${error.error}`;
          };
 
          if(error.status === HttpStatusCode.Unauthorized){
             console.log('****INICIANDO PROCESO DE REFRESH TOKEN****');
+
               // Verifica si ya se está intentando refrescar el token
               if (this._authService.isRefreshing) {
                return throwError(() => new Error('Ya se está refrescando el token.'));
@@ -30,7 +35,7 @@ export class ErrorApiInterceptor implements HttpInterceptor {
                concatMap((response) => {
                   console.log('****TOKEN ACTUALIZADO****');
                   const requestClone = req.clone({
-                     headers: req.headers.set('Autorizathion', `Bearer ${response.newAccessToken}`)
+                     headers: req.headers.set('Authorization', `Bearer ${response.newAccessToken}`)
                   });
                   return next.handle(requestClone);
                }),

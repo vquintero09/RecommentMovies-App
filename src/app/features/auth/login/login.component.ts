@@ -3,7 +3,6 @@ import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar'
-import { IUser } from '@core/interfaces/user-api.interface';
 
 @Component({
   selector: 'app-login',
@@ -18,13 +17,11 @@ export class LoginComponent {
 
    errorMessage:string = '';
    submitted: boolean = false;
-   UserDate!: IUser;
 
    loginForm = this._formBuilder.group({
       username: ['Vicodev09', Validators.required],
       password: ['chocolate*22', Validators.required]
    });
-
 
    login(): void{
       if(this.loginForm.valid) {
@@ -36,9 +33,8 @@ export class LoginComponent {
                this._snackBar.open(this.errorMessage, '' ,{ horizontalPosition:'center', verticalPosition: 'bottom', duration: 5*1000 })
             } 
          })
-         
       } 
-   }
+   };
 
    hasError(controlName: string, errorName: string): boolean {
       const control = this.loginForm.get(controlName);
