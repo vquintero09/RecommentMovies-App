@@ -12,6 +12,23 @@
               Datos personales
             </mat-panel-title>
           </mat-expansion-panel-header>
+          @for (section of sectionsDataUser; track $index) {
+            <button class="test">
+              <div class="test__div">
+                <p class="test__p1">{{section.label}}</p>
+                <p class="test__p2">{{(DataUser$ | async)?.[section.key]}}</p>
+              </div>
+              <div>
+                <ion-icon class='test__arrow' name="chevron-forward-outline"></ion-icon>
+              </div>
+            </button>
+          }
+
+          <div class="test__div test__div2">
+            <p class="test__p1">Creacion de la cuenta</p>
+            <p class="test__p2">{{(DataUser$ | async)?.createdAt | date: 'medium' }}</p>
+          </div>
+
         </mat-expansion-panel>
       </mat-accordion>
     </section>

@@ -13,31 +13,30 @@ import { MatButtonModule } from '@angular/material/button';
 import { AuthCallbackComponent } from './auth-callback/auth-callback.component';
 
 export const routes: Routes = [
-  {
-    path: '',
-    component: AuthComponent,
-    children: [
-      {
-        path: 'login',
-        component: LoginComponent
-      },
-      {
-        path: 'register',
-        component: RegisterComponent
-      },
-      {
-        path: 'callback',
-        component: AuthCallbackComponent
-      },
-      {
-        path: '',
-        redirectTo: 'login',
-        pathMatch: 'full'
-       
-      }
-      
-    ]
-  }
+   {
+      path: '',
+      component: AuthComponent,
+      children: [
+         {
+            path: 'login',
+            component: LoginComponent
+         },
+         {
+            path: 'register',
+            component: RegisterComponent
+         },
+         {
+            path: 'callback',
+            component: AuthCallbackComponent
+         },
+         {
+            path: '',
+            redirectTo: 'login',
+            pathMatch: 'full'
+         
+         }
+      ]
+   }
 ]
 
 @NgModule({

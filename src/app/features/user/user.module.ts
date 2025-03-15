@@ -9,6 +9,7 @@ import { Routes, RouterLink, RouterModule } from '@angular/router';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatSlideToggle } from '@angular/material/slide-toggle';
 import { MatRadioModule } from '@angular/material/radio';
+import { AsyncPipe, DatePipe } from '@angular/common';
 
 
 export const routes: Routes = [
@@ -24,7 +25,7 @@ export const routes: Routes = [
 ]
 
 @NgModule({
-  imports: [RouterModule.forChild(routes), IonIcon, RouterLink, MatExpansionModule, MatSlideToggle, MatRadioModule],
+  imports: [RouterModule.forChild(routes), IonIcon, RouterLink, MatExpansionModule, MatSlideToggle, MatRadioModule, AsyncPipe, DatePipe],
   exports: [UserComponent],
   declarations: [UserComponent, UserPorfileComponent, UserConfigurationComponent, UserNotificationsComponent],
   providers: [],

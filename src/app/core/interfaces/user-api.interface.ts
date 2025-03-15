@@ -3,12 +3,16 @@ export interface IUser {
   password: string
 };
 
+export interface IDataUSer {
+  username: string;
+  id: string;
+}
 export interface IReponseSingIn {
   accessToken: string;  
   refreshToken: string;
-  username: string;
-  id: string,
+  user: IDataUSer
 };
+
 
 export interface IResponseRefreshToken {
   newAccessToken: string

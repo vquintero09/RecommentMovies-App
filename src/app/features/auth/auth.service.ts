@@ -1,9 +1,9 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { IReponseSingIn, IResponseRefreshToken, IUser } from '@core/interfaces/user-api.interface';
-import { Observable, tap } from 'rxjs';
+import { IDataUSer, IReponseSingIn, IResponseRefreshToken, IUser } from '@core/interfaces/user-api.interface';
+import { Observable, shareReplay, tap } from 'rxjs';
 import { Router } from '@angular/router';
-import {URL_AUTH_LOGIN, URL_AUTH_REFRESH, URL_CREATE} from '@core/services/urls-api'
+import {URL_AUTH_LOGIN, URL_AUTH_REFRESH, URL_CREATE, URL_GET_DATA_USER} from '@core/services/urls-api'
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +16,7 @@ export class AuthService {
    private clientId = '217026584906-44qnh9i0qsgeffaprr4gqopbrdn7n9t8.apps.googleusercontent.com';
 
    private _isRefreshing = false;
+   private userData$: Observable<any> | null = null;
 
    get isRefreshing () {
       return this._isRefreshing;
@@ -27,7 +28,8 @@ export class AuthService {
    login(user: IUser): Observable<IReponseSingIn>{
       return this._HTTP.post<IReponseSingIn>(URL_AUTH_LOGIN, user).pipe(tap((res) => {
          localStorage.setItem('accessToken', res.accessToken);
-         localStorage.setItem('refreshToken', res.refreshToken)
+         localStorage.setItem('refreshToken', res.refreshToken);
+         localStorage.setItem('username', res.user.username);
       }))
    };
 
@@ -45,10 +47,24 @@ export class AuthService {
    logout(): void {
       localStorage.removeItem('token');
       this._router.navigateByUrl('auth')
-   }
+   };
 
    create(user: IUser): Observable<string> {
       return this._HTTP.post<any>(URL_CREATE, user)
+   };
+
+   getDataUSer(): Observable<any> {
+      if(!this.userData$){
+         const username = localStorage.getItem('username');
+         this.userData$ = this._HTTP.get(`${URL_GET_DATA_USER}/${username}`).pipe(
+            shareReplay(1)
+         )
+      }
+      return this.userData$
+   };
+
+   refreshUser():void {
+      this.userData$ = null;
    }
   constructor() { }
 }
