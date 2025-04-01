@@ -45,7 +45,10 @@ export class AuthService {
    }
 
    logout(): void {
-      localStorage.removeItem('token');
+      localStorage.removeItem('accessToken');
+      localStorage.removeItem('refreshToken');
+      localStorage.removeItem('username');
+      this.userData$ = null
       this._router.navigateByUrl('auth')
    };
 
@@ -57,7 +60,7 @@ export class AuthService {
       if(!this.userData$){
          const username = localStorage.getItem('username');
          this.userData$ = this._HTTP.get(`${URL_GET_DATA_USER}/${username}`).pipe(
-            shareReplay(1)
+            shareReplay(1) //Asegurarnos de que la petición se haga solo una vez evitando múltiples llamadas a la API
          )
       }
       return this.userData$
